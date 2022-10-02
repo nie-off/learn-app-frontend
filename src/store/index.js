@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
+
 
 export default createStore({
   state: {
@@ -22,6 +24,7 @@ export default createStore({
       state.isAuthenticated = true
     },
     deleteToken(state) {
+      axios.defaults.headers.common["Authorization"] = ""
       state.token = ''
       state.isAuthenticated = false
     }

@@ -65,7 +65,6 @@ import axios from 'axios'
                 .post("/api/v1/users/", userData)
                 .then(response => {
                     console.log(response)
-                    
                     this.$router.push('/login')
                 })
                 .catch(error => {

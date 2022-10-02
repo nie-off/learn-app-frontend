@@ -1,8 +1,13 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
+    <template v-if="$store.state.isAuthenticated">
+      <button class="button is-danger" @click="logout">Logout</button>
+    </template>
+    <template v-else>
     <router-link to="/create">Create Account</router-link> |
     <router-link to="/login">Login</router-link> |
+    </template>
   </nav>
   <router-view/>
 </template>
@@ -26,6 +31,11 @@
     document.title = 'Learn Application'
     // TODO: Debugging
     console.log(this.$store.state.isAuthenticated)
+  },
+  methods: {
+    logout() {
+      this.$store.commit('deleteToken')
+    }
   }
 }
 </script>
