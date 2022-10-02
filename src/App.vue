@@ -24,6 +24,8 @@
   },
   mounted() {
     document.title = 'Learn Application'
+    // TODO: Debugging
+    console.log(this.$store.state.isAuthenticated)
   }
 }
 </script>
