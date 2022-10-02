@@ -14,7 +14,6 @@
     name: 'App',
     beforeCreate() {
       this.$store.commit('initStore')
-
       const token = this.$store.state.token
 
       if (token) {
@@ -22,6 +21,9 @@
       } else {
         axios.defaults.headers.common["Authorization"] = "";
     }
+  },
+  mounted() {
+    document.title = 'Learn Application'
   }
 }
 </script>
