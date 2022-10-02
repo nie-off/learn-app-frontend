@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link to="/" class="navbar-item"><strong>{{this.$options.name}}</strong></router-link>
+      <router-link to="/" class="navbar-item" id="brandName"><strong>{{this.$options.name}}</strong></router-link>
       <div class="navbar-burger" @click="showNav = !showNav" :class="{ 'is-active': showNav }">
         <span></span>
         <span></span>
@@ -71,5 +71,9 @@
 </script>
 
 <style lang="scss">
-  @import '../node_modules/bulma'
+  @import '../node_modules/bulma';
+
+  #brandName {
+  font-size: 20px;
+}
 </style>
