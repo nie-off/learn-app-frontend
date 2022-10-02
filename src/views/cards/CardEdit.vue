@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="card-edit">
     <div class="columns">
       <div class="column is-8 is-offset-4">
         <h1 class="title">Edit Card</h1>

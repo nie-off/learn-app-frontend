@@ -9,6 +9,13 @@
       </div>
     </div>
     <div class="navbar-menu" :class="{ 'is-active': showNav }">
+      <div class="navbar-start">
+        <template v-if="$store.state.isAuthenticated">
+          <router-link to="/training" class="navbar-item">Training</router-link>
+          <router-link to="/cards" class="navbar-item">Cards</router-link>
+        </template>
+
+      </div>
       <div class="navbar-end">
         <template v-if="$store.state.isAuthenticated">
           <div class="navbar-item">
@@ -57,8 +64,6 @@
     },
     mounted() {
       document.title = 'Learn Application'
-      // TODO: Debugging
-      console.log(this.$store.state.isAuthenticated)
     },
     methods: {
       logout() {
