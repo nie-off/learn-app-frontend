@@ -1,13 +1,13 @@
 <template>
     <div class="create">
         <div class="columns">
-            <div class="column is-8 is-offset-4">
+            <div class="column is-8 is-offset-2">
                 <h1 class="title">Login</h1>
                 <form>
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control has-icons-left">
-                            <input class="input" type="email" placeholder="Email input" name="username" v-model="username">
+                            <input class="input" type="email" placeholder="Email" name="username" v-model="username">
                             <span class="icon is-small is-left">
                                 <font-awesome-icon icon="fa-solid fa-envelope" />
                             </span>
@@ -71,7 +71,6 @@
                     this.$store.commit('setToken', token)
                     axios.defaults.headers.common["Authorization"] = "Token " + token
                     localStorage.setItem("token", token)
-                    this.$router.push('/')
                 })
                 .catch(error => {
                     if (error.response) {
@@ -85,6 +84,18 @@
                         console.log(JSON.stringify(error))
                     }
                 })
+                axios
+                .get("/api/v1/users/me")
+                .then(response => {
+                    this.$store.commit('setUser', {'username': response.data.username, 'id': response.data.id})
+                    localStorage.setItem('username', response.data.username)
+                    localStorage.setItem('userid', response.data.id)
+                    this.$router.push('/')
+                })
+                .catch(error => {
+                    console.log(JSON.stringify(error))
+                })
+
             }
         }
     }
