@@ -1,12 +1,14 @@
 <template>
   <div class="cards">
     <div class="columns is-multiline">
-      <div class="column is-8 is-offset-2">
-        <h1 class="title">List Cards</h1>
-        <router-link :to="{name: 'CardCreate'}" class="button is-primary">Create a new Card</router-link>
+      <div class="column is-offset-4 is-4 is-offset-5">
+        <h1 class="title">Your Flash Cards</h1>
+      </div>
+      <div class="column is-4">
+        <router-link :to="{name: 'CardCreate'}" class="button is-success">Create a new Card</router-link>
       </div>
       <div class="column is-12">
-        <table class="table is-fullwidth">
+        <table class="table is-fullwidth is-hoverable is-striped">
           <thead>
             <tr>
               <th>Task</th>
@@ -15,13 +17,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="card in cards" v-bind:key="card.id">
+            <tr v-for="card in cards" v-bind:key="card.id" @mouseover="hover = card.id" @mouseleave="hover = card.id">
               <td>{{ card.task }}</td>
               <td>{{ card.answer }}</td>
-              <td>
-                <router-link class="button is-primary" :to="{name: 'CardDetails', params: { id: card.id }}">Details</router-link>
-                <router-link class="button is-warning" :to="{name: 'CardEdit', params: { id: card.id }}">Update</router-link>
-                <button class="button is-danger" @click="deleteCard(card.id)">Delete</button>
+              <td v-if="hover == card.id">
+                <router-link class="button is-success marginRight" :to="{name: 'CardDetails', params: { id: card.id }}"><font-awesome-icon class="marginRight" icon="fa-solid fa-magnifying-glass"/>Details</router-link>
+                <router-link class="button is-warning marginRight" :to="{name: 'CardEdit', params: { id: card.id }}"><font-awesome-icon class="marginRight" icon="fa-solid fa-pencil"/>Update</router-link>
+                <button class="button is-danger marginRight" @click="deleteCard(card.id)"><font-awesome-icon class="marginRight" icon="fa-solid fa-trash"/>Delete</button>
               </td>
             </tr>
           </tbody>
@@ -38,7 +40,8 @@
     name: 'Cards',
     data() {
       return {
-        cards: []
+        cards: [],
+        hover: null
       }
     },
     mounted() {
@@ -65,7 +68,3 @@
     }
   }
 </script>
-
-<style>
-  
-</style>

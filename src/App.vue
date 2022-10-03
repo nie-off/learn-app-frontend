@@ -11,10 +11,10 @@
     <div class="navbar-menu" :class="{ 'is-active': showNav }">
       <div class="navbar-start">
         <template v-if="$store.state.isAuthenticated">
-          <router-link to="/training" class="navbar-item">Training</router-link>
-          <router-link to="/cards" class="navbar-item">Cards</router-link>
+          <router-link to="/training" class="navbar-item"><font-awesome-icon class="marginRight" icon="fa-solid fa-vial"/>Training</router-link>
+          <router-link to="/cards" class="navbar-item"><font-awesome-icon class="marginRight" icon="fa-solid fa-rectangle-list"/>Cards</router-link>
         </template>
-
+        
       </div>
       <div class="navbar-end">
         <template v-if="$store.state.isAuthenticated">
@@ -69,7 +69,7 @@
       logout() {
         this.$store.commit('deleteToken')
         localStorage.removeItem("token")
-        axios.defaults.headers.common["Authorization"] = "";
+        axios.defaults.headers.common["Authorization"] = ""        
       }
     }
   }
@@ -77,8 +77,11 @@
 
 <style lang="scss">
   @import '../node_modules/bulma';
-
+  
   #brandName {
-  font-size: 20px;
-}
+    font-size: 20px;
+  }
+  .marginRight {
+    margin-right: 3px;
+  }
 </style>
