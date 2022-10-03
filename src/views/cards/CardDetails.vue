@@ -3,18 +3,23 @@
     <div class="columns">
       <div class="column is-8 is-offset-2">
         <h1 class="title">Card Details</h1>
-        <p>{{card.task}}</p>
-        <p>{{card.answer}}</p>
+        <div class="column is-6 is-offset-3">
+        <Flash-Card :front="card.task" :back="card.answer"></Flash-Card>
       </div>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import FlashCard from "../../components/FlashCard.vue";
 
   export default {
     name: 'CardDetails',
+    components: {
+      FlashCard
+    },
     data() {
       return {
         card: {}      
@@ -26,7 +31,6 @@ import axios from 'axios'
     methods: {
       getCard() {
         const cardId = this.$route.params.id
-
         axios
         .get('/api/v1/cards/' + cardId)
         .then(response => {
@@ -40,7 +44,3 @@ import axios from 'axios'
     }
   }
 </script>
-
-<style>
-  
-</style>
