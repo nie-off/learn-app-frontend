@@ -29,7 +29,7 @@
                     </div>
                     <div class="field">
                         <div class="control">
-                            <button class="button is-success" @click="createAccount">Sign up</button>
+                            <button class="button is-success" :disabled="isButtonDisabled" @click="createAccount">Sign up</button>
                         </div>
                     </div>
                 </form>
@@ -39,15 +39,24 @@
 </template>
 
 <script>
-import axios from 'axios'
-
+    import axios from 'axios'
+    
     export default {
         name: 'Create',
         data() {
             return {
                 username: '',
                 password: '',
-                errors: []
+                errors: [],
+                isButtonDisabled: true
+            }
+        },
+        watch: {
+            username: function (oldVal, newVal) {
+                this.handleButtonActivation()
+            },
+            password: function (oldVal, newVal) {
+                this.handleButtonActivation()
             }
         },
         methods: {
@@ -69,7 +78,6 @@ import axios from 'axios'
                         for (const property in error.response.data) {
                             this.errors.push(`${property}: ${error.response.data[property]}`)
                         }
-                        
                         console.log(JSON.stringify(error.response.data))
                     } else if (error.message) {
                         console.log(JSON.stringify(error.message))
@@ -77,7 +85,15 @@ import axios from 'axios'
                         console.log(JSON.stringify(error))
                     }
                 })
+            },
+            handleButtonActivation() {
+                let isValid = false
+                const validRegexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                isValid = this.username.match(validRegexEmail)
+                isValid = isValid && this.password.length>3
+                this.isButtonDisabled = !isValid
             }
+            
         }
     }
 </script>

@@ -18,17 +18,26 @@ const routes = [
   {
     path: '/create',
     name: 'Create',
-    component: Create
+    component: Create,
+    meta: {
+      guestsOnly: true
+    }
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    meta: {
+      guestsOnly: true
+    }
   },
   {
     path: '/training',
     name: 'Training',
-    component: Training
+    component: Training,
+    meta: {
+      protected: true
+    }
   },
   {
     path: '/cards',
@@ -72,7 +81,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.protected) && !store.state.isAuthenticated) {
     next('/login')
-  } else {
+  } else if (to.matched.some(record => record.meta.guestsOnly) && store.state.isAuthenticated) {
+    next('/')
+  }
+  else {
     next()
   }
 })

@@ -25,7 +25,7 @@
         <template v-else>
           <div class="navbar-item">
             <div class="buttons">
-              <router-link to="/create" class="button is-primary">Sign Up</router-link>
+              <router-link to="/create" class="button is-success">Sign Up</router-link>
               <router-link to="/login" class="button is-light">Login</router-link>
             </div>
           </div>
