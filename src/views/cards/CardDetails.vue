@@ -1,20 +1,20 @@
 <template>
   <div class="card-details">
     <div class="columns">
-      <div class="column is-8 is-offset-2">
+      <div class="column is-6 is-offset-3">
         <h1 class="title">Card Details</h1>
         <div class="column is-6 is-offset-3">
-        <Flash-Card :front="card.task" :back="card.answer"></Flash-Card>
+          <Flash-Card :front="card.task" :back="card.answer"></Flash-Card>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import FlashCard from "../../components/FlashCard.vue";
-
+  import axios from 'axios'
+  import FlashCard from "../../components/FlashCard.vue";
+  
   export default {
     name: 'CardDetails',
     components: {

@@ -15,7 +15,7 @@
         <div class="cardFace flip">
             <div class="card-content">
                 <div class="content">
-                    {{back}}
+                    Antwort:<br/>{{back}}
                 </div>
             </div>
         </div>
@@ -45,9 +45,8 @@
 <style scoped>
     .scene {
         width: 100%;
-        height: 8rem;
+        height: 10rem;
         border: 1px solid #ccc;
-        margin: 40px 0;
         perspective: 600px;
     }
     

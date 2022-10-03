@@ -1,7 +1,7 @@
 <template>
     <div class="create">
         <div class="columns">
-            <div class="column is-8 is-offset-2">
+            <div class="column is-4 is-offset-4">
                 <h1 class="title">Create an Account</h1>
                 <form>
                     <div class="field">

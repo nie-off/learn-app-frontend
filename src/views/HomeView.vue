@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="columns">
-      <div class="column is-8 is-offset-2">
+      <div class="column is-4 is-offset-4">
         <h1 class="title">Start</h1>
         <template v-if="$store.state.isAuthenticated">
           <h3>Hello {{$store.state.user.username}}!</h3>

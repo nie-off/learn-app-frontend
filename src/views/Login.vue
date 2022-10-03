@@ -1,7 +1,7 @@
 <template>
     <div class="create">
         <div class="columns">
-            <div class="column is-8 is-offset-2">
+            <div class="column is-4 is-offset-4">
                 <h1 class="title">Login</h1>
                 <form>
                     <div class="field">
@@ -16,12 +16,12 @@
                     
                     <div class="field">
                         <label class="label">Password</label>
-                        <p class="control has-icons-left">
+                        <div class="control has-icons-left">
                             <input class="input" type="password" placeholder="Password" name="password" v-model="password">
                             <span class="icon is-small is-left">
                                 <font-awesome-icon icon="fa-solid fa-lock" />
                             </span>
-                        </p>
+                        </div>
                     </div>
                     
                     <div class="notification is-danger" v-if="errors.length">
@@ -95,7 +95,7 @@
                 .catch(error => {
                     console.log(JSON.stringify(error))
                 })
-
+                
             }
         }
     }
