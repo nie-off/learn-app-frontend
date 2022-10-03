@@ -1,7 +1,7 @@
 <template>
   <div class="cards">
     <div class="columns is-multiline">
-      <div class="column is-8 is-offset-4">
+      <div class="column is-8 is-offset-2">
         <h1 class="title">List Cards</h1>
         <router-link :to="{name: 'CardCreate'}" class="button is-primary">Create a new Card</router-link>
       </div>
@@ -18,7 +18,11 @@
             <tr v-for="card in cards" v-bind:key="card.id">
               <td>{{ card.task }}</td>
               <td>{{ card.answer }}</td>
-              <td><router-link :to="{name: 'CardDetails', params: { id: card.id }}">Details</router-link></td>
+              <td>
+                <router-link class="button is-primary" :to="{name: 'CardDetails', params: { id: card.id }}">Details</router-link>
+                <router-link class="button is-warning" :to="{name: 'CardEdit', params: { id: card.id }}">Update</router-link>
+                <button class="button is-danger" @click="deleteCard(card.id)">Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -45,12 +49,17 @@
         axios
         .get('/api/v1/cards')
         .then(response => {
-          for (let i = 0; i < response.data.length; i++) {
-            this.cards.push(response.data[i])
-          }
+          this.cards = response.data
         })
         .catch(error => {
           console.log(JSON.stringify(error))
+        })
+      },
+      deleteCard(cardId) {
+        axios
+        .delete('/api/v1/cards/' + cardId)
+        .then(result => {
+          this.getCards()
         })
       }
     }

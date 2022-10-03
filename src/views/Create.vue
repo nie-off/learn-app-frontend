@@ -1,7 +1,7 @@
 <template>
     <div class="create">
         <div class="columns">
-            <div class="column is-8 is-offset-4">
+            <div class="column is-8 is-offset-2">
                 <h1 class="title">Create an Account</h1>
                 <form>
                     <div class="field">
@@ -13,7 +13,6 @@
                             </span>
                         </div> 
                     </div>
-                    
                     <div class="field">
                         <label class="label">Password</label>
                         <p class="control has-icons-left">
@@ -23,13 +22,11 @@
                             </span>
                         </p>
                     </div>
-                    
                     <div class="notification is-danger" v-if="errors.length">
                         <p v-for="error in errors" v-bind:key="error">
                             {{ error }}
                         </p>
                     </div>
-                    
                     <div class="field">
                         <div class="control">
                             <button class="button is-success" @click="createAccount">Sign up</button>

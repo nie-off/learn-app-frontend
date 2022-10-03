@@ -1,7 +1,7 @@
 <template>
   <div class="card-details">
     <div class="columns">
-      <div class="column is-8 is-offset-4">
+      <div class="column is-8 is-offset-2">
         <h1 class="title">Card Details</h1>
         <p>{{card.task}}</p>
         <p>{{card.answer}}</p>
