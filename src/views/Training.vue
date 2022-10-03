@@ -1,20 +1,24 @@
 <template>
   <div class="training">
     <div class="columns is-multiline">
-      <div class="column is-8 is-offset-2">
+      <div class="column is-4 is-offset-4">
         <h1 class="title">Training</h1>
       </div>
-      <div class="column is-12">
+      <div class="column is-6 is-offset-3">
         <div class="box">
-          <h3 class="is-size-4 mb-4">{{ currentCard.task }}</h3>
+          <h3>{{ currentCard.task }}</h3>
           <div class="field">
             <label class="label">Answer:</label>
             <div class="control">
               <input class="input" type="text" placeholder="Answer" name="answer" v-model="answer"></div>
             </div> 
           </div>
-          <button class="button is-success" @click="checkAnswer">Check</button>
-          <h4>{{result}}</h4>
+          <h3>Result: <strong>{{result}}</strong></h3>
+          <h3>Score: <strong>{{score}}</strong></h3>
+          <div class="level-right">
+            <button class="button is-light marginRight" @click="checkAnswer">Check</button>
+            <button class="button is-primary" @click="nextCard">Next</button>
+          </div>
         </div>
       </div>
     </div>
@@ -29,8 +33,10 @@
         return {
           cards: [],
           currentCard: {},
+          currentCardIndex: 0,
           answer: "",
-          result: ""
+          result: "",
+          score: 0
         }
       },
       mounted() {
@@ -44,8 +50,7 @@
             for (let i = 0; i < response.data.length; i++) {
               this.cards.push(response.data[i])
             }
-            // TODO: Select by chance
-            this.currentCard = this.cards[0]
+            this.currentCard = this.cards[this.currentCardIndex]
           })
           .catch(error => {
             console.log(JSON.stringify(error))
@@ -54,13 +59,23 @@
         checkAnswer() {
           let levenshtein_distance = this.similarity(this.answer, this.currentCard.answer)
           if (levenshtein_distance > 0.7) {
-            this.result = "CORRECT!"
+            this.result = "Correct."
+            this.score++
           } else {
             this.result = "Not correct."
+            this.score--
           }
-
-
         },
+        nextCard() {
+          if (this.cards.length-1 > this.currentCardIndex) {
+            this.currentCardIndex++
+          } else {
+            this.currentCardIndex = 0
+          }
+          this.currentCard = this.cards[this.currentCardIndex]
+          this.result = ""
+        },
+        
         // Levenshtein Implemention from https://stackoverflow.com/questions/10473745/compare-strings-javascript-return-of-likely
         similarity(s1, s2) {
           var longer = s1;
