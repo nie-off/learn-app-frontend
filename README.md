@@ -1,4 +1,13 @@
-# learn_app_frontend
+# Frontend for the Learn App in Vue.js
+
+## Frameworks and libraries used
+* Vuejs 3
+* Bulma
+
+## Credits
+* https://github.com/SteinOveHelset : helpful VueJS and Django content
+* https://github.com/jamiemccarville/vue-flipping-card-demo/tree/master/src : Used an
+* https://stackoverflow.com/a/36566052 : JS implementation of the Levenshtein distance 
 
 ## Project setup
 ```
