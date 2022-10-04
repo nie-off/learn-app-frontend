@@ -6,7 +6,7 @@
 
 ## Credits
 * https://github.com/SteinOveHelset : helpful VueJS and Django content
-* https://github.com/jamiemccarville/vue-flipping-card-demo/tree/master/src : Used an
+* https://github.com/jamiemccarville/vue-flipping-card-demo/tree/master/src : Used as an inspiration for creating flipping flash cards
 * https://stackoverflow.com/a/36566052 : JS implementation of the Levenshtein distance 
 
 ## Project setup
